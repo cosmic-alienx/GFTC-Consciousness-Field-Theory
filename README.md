@@ -1,128 +1,132 @@
-# Geometric Field Theory of Consciousness (GFTC) – Numerical Toy Model  
-*(English version of the README)*
+# 意识几何场论（GFTC）——数值模型  
 
-This repository provides a **numerical implementation** of the *Geometric Field Theory of Consciousness* (GFTC).  
-The theory regards consciousness as a **macroscopic geometric order** that emerges through a **dynamical phase transition** in a multi-field system defined on a 2-D lattice.
-
----
-
-## 🌟 Key Findings
-
-1. **Critical Threshold**  
-   There is a sharp critical value of the *consciousness coupling*  
-   `λ_c^crit ≈ 0.032`.  
-   Below `λ_c^crit` the system stays disordered; above it a highly ordered
-   vortex-lattice of the gauge field appears **abruptly**.
-
-2. **Synergistic Phase Diagram**  
-   Consciousness is **not** controlled by a single parameter.  
-   A 2-D sweep of *neural instability* `μ` vs. `λ_c` reveals a **tilted phase
-   boundary** separating unconscious from conscious regions, implying that
-   **“neural readiness”** and **“global integration”** must cooperate.
+本仓库提供了「意识几何场论」（Geometric Field Theory of Consciousness, GFTC）的**数值实现**。  
+该理论将意识视为一种**宏观几何有序态**，通过在二维格点上的多耦合场发生**动力学相变**而涌现。
 
 ---
 
-## 🚀 Quick Start
+## 🌟 核心发现
 
-1. **Clone & install**  
+1. **临界阈值**  
+   存在明确的*意识耦合*临界值  
+   `λ_c^crit ≈ 0.032`。  
+   低于该值系统处于无序态；一旦越过，规范场立即自发形成**稳定涡旋晶格**。
+
+2. **协同相图**  
+   意识**并非**由单一参数控制。  
+   在 `(μ, λ_c)` 平面上扫描得到一条**倾斜的相边界**，将「无意识」与「有意识」区域分开，表明  
+   **「神经准备度」**与**「全局整合效率」**必须协同配合才能涌现意识。
+
+---
+
+## 🗂️ 仓库结构
+
+```新建文件夹
+GFTC-Consciousness-Field-Theory/
+├── scripts/
+│   ├── gftc_core.py              # 格点模型与梯度下降演化
+│   ├── run_phase_transition.py   # 实验一：单参数 λ_c 扫描
+│   ├── run_2d_phase_diagram.py   # 实验二：(μ, λ_c) 相图
+│   ├── utils.py                  # 离散拉普拉斯等工具
+│   └── plot_results.py           # 统一绘图风格
+├── figures/                      # 自动生成图片（需先创建文件夹）
+├── requirements.txt              # NumPy + Matplotlib
+└── README.md                     # 本文件
+```
+
+---
+
+## 🚀 快速上手
+
+1. **克隆与安装**  
    ```bash
    git clone https://github.com/YOUR_USERNAME/GFTC-Consciousness-Field-Theory.git
    cd GFTC-Consciousness-Field-Theory
    pip install -r requirements.txt
    ```
 
-2. **Run the core experiments**  
-   - *Experiment 1* – critical phenomenon:  
+2. **运行核心实验**  
+   - *实验一*——临界现象：  
      ```bash
      python scripts/run_phase_transition.py
      ```  
-     ➜ produces `figures/figure1_phase_transition.png`
+     ➜ 生成 `figures/figure1_phase_transition.png`
 
-   - *Experiment 2* – 2-D phase diagram:  
+   - *实验二*——二维相图：  
      ```bash
      python scripts/run_2d_phase_diagram.py
      ```  
-     ➜ produces `figures/figure2_2d_phase_diagram.png`
+     ➜ 生成 `figures/figure2_2d_phase_diagram.png`
 
-3. **Explore & modify**  
-   All physics is encapsulated in the class `GFTC_ToyModel` inside  
-   `scripts/gftc_core.py`.  
-   Feel free to change lattice size, potentials, coupling forms, initial
-   conditions, etc.
+3. **探索与修改**  
+   所有物理逻辑封装在 `scripts/gftc_core.py` 的 `GFTC_ToyModel` 类中，  
+   可随意调整格点大小、势函数、耦合形式、初始条件等。
 
 ---
 
-## 📈 Reproducible Results
+## 📈 可复现结果
 
-| Figure | Description | Scientific Meaning |
-|--------|-------------|--------------------|
-| `figure1_phase_transition.png` | Order parameter vs. `λ_c` with sudden jump and peak in derivative.  Insets show `∇ × A` evolving from noise to clear vortices. | **First computational evidence** for a *critical coupling threshold* of consciousness. |
-| `figure2_2d_phase_diagram.png` | Heat-map of order parameter in `(μ, λ_c)` plane displaying a *tilted boundary* and a high-order *plateau*. | Demonstrates that consciousness is a *synergistic product* of neural excitability and global integration—offers a **unified theoretical coordinate** for states such as anaesthesia, sleep, wakefulness. |
-
----
-
-## 🔧 Model in a Nutshell
-
-**Fields on a 2-D periodic lattice**  
-- `Ψ` (complex scalar) – *neural activity field*  
-- `φ` (real scalar) – *causal-density field* (bi-stable potential)  
-- `A_μ = (Ax, Ay)` – *U(1) gauge field* whose curl represents the
-  **geometric signature of consciousness**.
-
-**Action (discretised)**  
-
-S = ∫[ |Dψ|² + V_ψ(ψ) + ½(∇φ)² + V_φ(φ) + ¼ F_{μν}F^{μν}
-     + λ_c φ |ψ|²  +  μ φ² ] d²x
-
-with `D_μ = ∇_μ - i A_μ` and `F_{μν} = ∂_μ A_ν - ∂_ν A_μ`.
-
-**Dynamics**  
-Gradient-descent relaxation in fictitious time ⇨ system flows toward
-**low-energy states**.  
-Order parameter = **spatial standard deviation of `∇ × A`**.
+| 图 | 描述 | 科学意义 |
+|----|------|----------|
+| `figure1_phase_transition.png` | 序参量随 `λ_c` 突跳及其导数峰值；插图显示 `∇ × A` 从噪声演变为清晰涡旋。 | 首次为「意识耦合存在临界阈值」提供**计算证据**。 |
+| `figure2_2d_phase_diagram.png` | `(μ, λ_c)` 平面序参量热力图，呈现倾斜相边界与高序「高原」。 | 表明意识是「神经易激性」与「全局整合」**协同产物**，为麻醉、睡眠、清醒等状态提供**统一理论坐标**。 |
 
 ---
 
-## 🧠 Theoretical Background & Further Reading
+## 🔧 模型速览
 
-GFTC attempts to bridge the *explanatory gap* in consciousness studies by
-mapping:
+**二维周期格点上的三条场**  
+- `Ψ`（复标量）——*神经活动场*  
+- `φ`（实标量）——*因果密度场*（双稳势）  
+- `A_μ = (Ax, Ay)`——*U(1) 规范场*，其旋度即为**意识的几何印记**
 
-- **qualia** → geometry of high-dimensional experience-space sections,  
-- **unity of consciousness** → existence of global sections of a fibre bundle,  
-- **mind–matter interaction** → gauge-invariant coupling term.
+**离散作用量**  
+```
+S = Σ[ |Dψ|² + V_ψ(ψ) + ½(∇φ)² + V_φ(φ) + ¼ F_{μν}F^{μν}
+     + λ_c φ |ψ|²  +  μ φ² ] Δ²x
+```
+其中 `D_μ = ∇_μ - i A_μ`，`F_{μν}` 为规范场强。
 
-A formal derivation, philosophical motivation and comparison with Integrated
-Information Theory (IIT) and other frameworks will be available in the
-upcoming pre-print (link to be added).
-
----
-
-## 🤝 Contributions Welcome
-
-- Questions on assumptions, maths or philosophy?  
-- Code optimisation, bug reports, new features?  
-- Ideas for new simulations (attention switching, pathological states, …)?
-
-Please open a **[GitHub Issue](https://github.com/YOUR_USERNAME/GFTC-Consciousness-Field-Theory/issues)** – we look forward to exploring the *geometry of consciousness* together!
+**动力学**  
+虚构时间梯度下降 → 系统流向**低能态**。  
+序参量 = **`∇ × A` 的空间标准差**。
 
 ---
 
-## 📜 Citation & Licence
+## 🧠 理论背景与延伸阅读
 
-If you use this code or build on these ideas, please:
+GFTC 试图弥合「解释鸿沟」，核心映射：
 
-- Link to this repository.  
-- Cite as:  
-  *“GFTC (Geometric Field Theory of Consciousness) numerical toy model”*.
+- **感受质**→ 高维经验空间截面的几何，  
+- **意识统一性**→ 纤维丛全局截面的存在，  
+- **心–物互动**→ 规范不变耦合项。
 
-Released under the **MIT Licence** – feel free to use, modify and distribute,
-but keep the original copyright notice.
+完整的数学推导、哲学动机及与整合信息论（IIT）等理论的比较，详见即将发布的预印本（链接稍后更新）。
 
 ---
 
-**Explorer’s remark**:  
-Consciousness may be the most complex phenomenon in the universe, yet it is
-not an impenetrable mystery. This toy model is a rough but determined key to
-the door of understanding—your help in refining it is warmly welcome!
+## 🤝 欢迎贡献
+
+- 对模型假设、数学或哲学有疑问？  
+- 想优化代码、报 Bug、加功能？  
+- 有新实验点子（注意力切换、病理状态…）？
+
+请直接开 **[GitHub Issue](https://github.com/YOUR_USERNAME/GFTC-Consciousness-Field-Theory/issues)**，一起探索**意识的几何疆域**！
+
+---
+
+## 📜 引用与许可
+
+若本代码或思路对你的研究有启发，请：
+
+- 引用本仓库链接；  
+- 在论文中注明：  
+  *「GFTC（意识几何场论）数值玩具模型」*
+
+项目采用 **MIT 许可证**，可自由使用、修改与分发，但请保留原始版权说明。
+
+---
+
+**探索者寄语**：  
+意识或许是宇宙最复杂的现象，却绝非不可触碰的神秘。这个玩具模型是一把粗糙但坚定的钥匙，期待与你一起将它打磨得更锋利。
 ```
